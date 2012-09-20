@@ -1,9 +1,19 @@
-After unpacking the tar file; as root:
+Hyper-V Linux Integration Components 3.4 for Debian Squeeze (6) systems
 
-	Execute the script ./rhel6-hv-driver-install to build and install
-	Hyper-V drivers on a rhel6 installation. Once the script completes,
-	reboot the machine to bringup RHEL6 enlightened on Hyper-V.
+	These drivers has been modified from the vanilla RHEL 6 version of
+	Linux Integration Components.
 
-	To uninstall the Hyper-V drivers, execute the script
-	./rhel6-hv-driver-uninstall. Once the script completes, reboot the machine
-	to bringup RHEL6 in fully emulated mode.
+	Before building this package, you'll need the following packages 
+	installed on your system:
+		linux-devel linux-headers build-essential
+
+	After you have the following above installed, please run build_src as
+	root to install the drivers.
+
+	BIG WARNING: If you have a recent kernel (i.e. 3.2.x) installed, you do
+	not need to use this package. Use those Hyper-V drivers instead of this
+	package. This package is intended for people who wish to stay with the
+	original kernel that Debian Squeeze shipped with!
+
+	For legal reasons, this package did not originate from Microsoft in any
+	form or shape. Use this code at your own risk.
