@@ -29,7 +29,10 @@
 #include <linux/if_vlan.h>
 
 #include "hyperv_net.h"
-
+/* defining constatns that's missing from what this code */
+#define VLAN_TAG_PRESENT 0x1000
+#define	VLAN_PRIO_SHIFT	13
+#define VLAN_PRIO_MASK	0xe000
 
 struct rndis_request {
 	struct list_head list_ent;

@@ -31,6 +31,17 @@
 #include <linux/inetdevice.h>
 #include <linux/etherdevice.h>
 #include <linux/skbuff.h>
+/* Missing functions copied from kernel 3.2 to this code */
+static inline struct page *skb_frag_page(const skb_frag_t *frag)
+{
+        return frag->page;
+}
+
+static inline unsigned int skb_frag_size(const skb_frag_t *frag)
+{
+	return frag->size;
+}
+
 #include <linux/in.h>
 #include <linux/slab.h>
 #include <net/arp.h>
