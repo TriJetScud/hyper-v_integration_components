@@ -1,0 +1,26 @@
+#!/bin/bash
+echo "Building Modules"
+
+make -C /lib/modules/$(uname -r)/build M=`pwd` clean
+make -C /lib/modules/$(uname -r)/build M=`pwd` modules
+
+echo "Installing Modules"
+
+if [ ! -d /lib/modules/$(uname -r)/extra/ ]
+then
+	mkdir /lib/modules/$(uname -r)/extra/
+fi
+
+cp -f ./*.ko /lib/modules/$(uname -r)/extra/
+
+echo "Generating Module dependencies"
+
+depmod
+
+echo "Installing Modprobe Rules"
+
+cp -f ./hyperv_pvdrivers.conf /etc/modprobe.d/
+
+echo "Generating initramfs"
+
+update-initramfs -u

@@ -1,0 +1,10 @@
+echo "Copying Files"
+echo "Invoke this script from drivers/hv directory"
+
+mkdir tools
+
+cp ../scsi/storvsc_drv.c .
+cp ../hid/hid-hyperv.c .
+cp ../net/hyperv/*.[hc] .
+cp ../../tools/hv/*.c ./tools/
+cp ../../include/linux/hyperv.h ./include/linux/
