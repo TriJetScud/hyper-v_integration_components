@@ -1,8 +1,55 @@
 #!/bin/bash
+if [ $1 == "--build-only" ] &> /dev/null
+then
+	BUILD_ONLY=true
+fi
+
+if [ $1 == "--clean" ] &> /dev/null
+then
+	CLEAN_ONLY=true
+fi
+
+if [ $1 == "--help" ] &> /dev/null
+then
+	cat << EOT
+Hyper-V Integration Components Installer Script
+Original Script by Microsoft Corporation
+
+Modified Version by Jeff Leung <jleung@curriegrad2004.ca>
+
+--build-only - Builds only the Linux Integration Services kernel modules for this specifc kernel
+--clean      - Cleans only the source tree of the Linux Integration Services
+--help	     - Displays this help
+
+By default if this script is run without any arguments, compilation and installation of the 
+Integration Components will be performed on the system.
+	
+EOT
+	exit
+fi
+
 echo "Building Modules"
 
 make -C /lib/modules/$(uname -r)/build M=`pwd` clean
+if [ $CLEAN_ONLY == 'true' ] &> /dev/null
+then
+	echo "Finished cleaning src tree. Skipping build as requested"
+	exit
+fi
+
 make -C /lib/modules/$(uname -r)/build M=`pwd` modules
+
+if [ $BUILD_ONLY == 'true' ] &> /dev/null
+then
+	echo "Build complete. Skipping installation as requested"
+	exit
+fi
+
+if [ `id -u` -ne 0 ]
+then
+	echo "Superuser privileges are required to continue. Aborting."
+	exit
+fi
 
 echo "Installing Modules"
 

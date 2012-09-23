@@ -31,6 +31,12 @@
 #include <linux/inetdevice.h>
 #include <linux/etherdevice.h>
 #include <linux/skbuff.h>
+
+/* Kludge to get the C preprocessor to detect things properly! 
+May want to use autoconf to detect a few functions in the kernel
+in the future... */
+#include <linux/if_vlan.h>
+#ifndef VLAN_TAG_PRESENT
 /* Missing functions copied from kernel 3.2 to this code */
 static inline struct page *skb_frag_page(const skb_frag_t *frag)
 {
@@ -41,6 +47,7 @@ static inline unsigned int skb_frag_size(const skb_frag_t *frag)
 {
 	return frag->size;
 }
+#endif
 
 #include <linux/in.h>
 #include <linux/slab.h>

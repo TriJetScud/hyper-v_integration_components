@@ -30,10 +30,11 @@
 
 #include "hyperv_net.h"
 /* defining constatns that's missing from what this code */
+#ifndef VLAN_TAG_PRESENT
 #define VLAN_TAG_PRESENT 0x1000
 #define	VLAN_PRIO_SHIFT	13
 #define VLAN_PRIO_MASK	0xe000
-
+#endif
 struct rndis_request {
 	struct list_head list_ent;
 	struct completion  wait_event;
