@@ -71,3 +71,7 @@ cp -f ./hyperv_pvdrivers.conf /etc/modprobe.d/
 echo "Generating initramfs"
 
 update-initramfs -u
+
+#Reserved for future use. When the init.d script gets ready that is...
+#echo "Building kvp daemon"
+#gcc -O2 -g tools/hv_kvp_daemon.c -O tools/hv_kvp_daemon

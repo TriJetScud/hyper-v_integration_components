@@ -32,6 +32,8 @@
 #include <linux/etherdevice.h>
 #include <linux/skbuff.h>
 
+#include <linux/version.h>
+#if LINUX_VERSION_CODE < KERNEL_VERSION(3, 2, 0)
 /* Kludge to get the C preprocessor to detect things properly! 
 May want to use autoconf to detect a few functions in the kernel
 in the future... */
@@ -47,6 +49,7 @@ static inline unsigned int skb_frag_size(const skb_frag_t *frag)
 {
 	return frag->size;
 }
+#endif
 #endif
 
 #include <linux/in.h>
